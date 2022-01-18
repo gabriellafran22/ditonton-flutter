@@ -1,4 +1,5 @@
 import 'package:ditonton/data/models/movie_table.dart';
+import 'package:ditonton/data/models/tv_series_table.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/movie_detail.dart';
@@ -108,4 +109,25 @@ final testTVSeriesDetail = TVSeriesDetail(
   name: 'name',
   homepage: 'homepage',
   languages: ["en"],
+);
+
+final testTVSeriesTable = TVSeriesTable(
+  id: 1,
+  name: 'name',
+  posterPath: 'posterPath',
+  overview: 'overview',
+);
+
+final testTVSeriesMap = {
+  'id': 1,
+  'name': 'name',
+  'overview': 'overview',
+  'posterPath': 'posterPath',
+};
+
+final testWatchlistTVSeries = TVSeries.watchlist(
+  id: 1,
+  name: 'name',
+  posterPath: 'posterPath',
+  overview: 'overview',
 );
