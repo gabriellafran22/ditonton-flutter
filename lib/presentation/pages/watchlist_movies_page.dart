@@ -48,18 +48,32 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
         title: Text('Watchlist'),
       ),
       body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                MovieWatchlist(),
-                SizedBox(
-                  height: 20,
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
+          child: Provider.of<WatchlistMovieNotifier>(context, listen: false)
+                          .watchlistMovies
+                          .length ==
+                      0 &&
+                  Provider.of<WatchlistTVSeriesNotifier>(context, listen: false)
+                          .watchlistTVSeries
+                          .length ==
+                      0
+              ? Center(
+                  child: Text(
+                    'No Watchlist Added Yet',
+                    style: kHeading5,
+                  ),
+                )
+              : Column(
+                  children: [
+                    MovieWatchlist(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TVSeriesWatchlist(),
+                  ],
                 ),
-                TVSeriesWatchlist(),
-              ],
-            ),
-          ),
+        ),
       ),
     );
   }

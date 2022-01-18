@@ -5,7 +5,6 @@ import 'package:ditonton/domain/entities/tv_series.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
 import 'package:ditonton/presentation/pages/home_movie_page.dart';
 import 'package:ditonton/presentation/pages/popular_tv_series_page.dart';
-import 'package:ditonton/presentation/pages/search_page.dart';
 import 'package:ditonton/presentation/pages/top_rated_tv_series_page.dart';
 import 'package:ditonton/presentation/pages/tv_series_detail_page.dart';
 import 'package:ditonton/presentation/pages/tv_series_search.dart';
@@ -42,10 +41,10 @@ class _TVSeriesPageState extends State<TVSeriesPage> {
           children: [
             UserAccountsDrawerHeader(
               currentAccountPicture: CircleAvatar(
-                backgroundImage: AssetImage('assets/circle-g.png'),
+                backgroundImage: AssetImage('assets/profile_pic.jpg'),
               ),
-              accountName: Text('Ditonton'),
-              accountEmail: Text('ditonton@dicoding.com'),
+              accountName: Text('Gabriella Franchesca'),
+              accountEmail: Text('gabriellafranchesca22@gmail.com'),
             ),
             ListTile(
               leading: Icon(Icons.movie),

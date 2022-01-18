@@ -74,7 +74,6 @@ void main() {
       final result = await repository.getNowPlayingTVSeries();
       // assert
       verify(mockRemoteDataSource.getNowPlayingTVSeries());
-      /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
       final resultList = result.getOrElse(() => []);
       expect(resultList, tTVSeriesList);
     });
@@ -116,7 +115,6 @@ void main() {
       // act
       final result = await repository.getPopularTVSeries();
       // assert
-      /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
       final resultList = result.getOrElse(() => []);
       expect(resultList, tTVSeriesList);
     });
@@ -156,7 +154,6 @@ void main() {
       // act
       final result = await repository.getTopRatedTVSeries();
       // assert
-      /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
       final resultList = result.getOrElse(() => []);
       expect(resultList, tTVSeriesList);
     });
@@ -271,7 +268,6 @@ void main() {
       final result = await repository.getTVSeriesRecommendations(tId);
       // assert
       verify(mockRemoteDataSource.getTVSeriesRecommendations(tId));
-      /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
       final resultList = result.getOrElse(() => []);
       expect(resultList, equals(tTVSeriesList));
     });
@@ -315,7 +311,6 @@ void main() {
       // act
       final result = await repository.searchTVSeries(tQuery);
       // assert
-      /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
       final resultList = result.getOrElse(() => []);
       expect(resultList, tTVSeriesList);
     });
@@ -344,50 +339,6 @@ void main() {
           result, Left(ConnectionFailure('Failed to connect to the network')));
     });
   });
-
-  // group('save watchlist TV Series', () {
-  //   test('should return success message when saving successful', () async {
-  //     // arrange
-  //     when(mockLocalDataSource.insertWatchlistTVSeries(testTVSeriesTable))
-  //         .thenAnswer((_) async => 'Added to Watchlist');
-  //     // act
-  //     final result = await repository.saveWatchlistTVSeries(testTVSeriesDetail);
-  //     // assert
-  //     expect(result, Right('Added to Watchlist'));
-  //   });
-  //
-  //   test('should return DatabaseFailure when saving unsuccessful', () async {
-  //     // arrange
-  //     when(mockLocalDataSource.insertWatchlistTVSeries(testTVSeriesTable))
-  //         .thenThrow(DatabaseException('Failed to add watchlist'));
-  //     // act
-  //     final result = await repository.saveWatchlistTVSeries(testTVSeriesDetail);
-  //     // assert
-  //     expect(result, Left(DatabaseFailure('Failed to add watchlist')));
-  //   });
-  // });
-
-  // group('remove watchlist TV Series', () {
-  //   test('should return success message when remove successful', () async {
-  //     // arrange
-  //     when(mockLocalDataSource.removeWatchlistTVSeries(testTVSeriesTable))
-  //         .thenAnswer((_) async => 'Removed from watchlist');
-  //     // act
-  //     final result = await repository.removeWatchlistTVSeries(testTVSeriesDetail);
-  //     // assert
-  //     expect(result, Right('Removed from watchlist'));
-  //   });
-  //
-  //   test('should return DatabaseFailure when remove unsuccessful', () async {
-  //     // arrange
-  //     when(mockLocalDataSource.removeWatchlistTVSeries(testTVSeriesTable))
-  //         .thenThrow(DatabaseException('Failed to remove watchlist'));
-  //     // act
-  //     final result = await repository.removeWatchlistTVSeries(testTVSeriesDetail);
-  //     // assert
-  //     expect(result, Left(DatabaseFailure('Failed to remove watchlist')));
-  //   });
-  // });
 
   group('get watchlist status TV Series', () {
     test('should return watch status whether data is found', () async {

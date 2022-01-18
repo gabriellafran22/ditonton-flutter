@@ -41,10 +41,10 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
           children: [
             UserAccountsDrawerHeader(
               currentAccountPicture: CircleAvatar(
-                backgroundImage: AssetImage('assets/circle-g.png'),
+                backgroundImage: AssetImage('assets/profile_pic.jpg'),
               ),
-              accountName: Text('Ditonton'),
-              accountEmail: Text('ditonton@dicoding.com'),
+              accountName: Text('Gabriella Franchesca'),
+              accountEmail: Text('gabriellafranchesca22@gmail.com'),
             ),
             ListTile(
               leading: Icon(Icons.movie),
