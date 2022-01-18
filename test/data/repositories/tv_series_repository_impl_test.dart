@@ -345,27 +345,27 @@ void main() {
     });
   });
 
-  group('save watchlist TV Series', () {
-    test('should return success message when saving successful', () async {
-      // arrange
-      when(mockLocalDataSource.insertWatchlistTVSeries(testTVSeriesTable))
-          .thenAnswer((_) async => 'Added to Watchlist');
-      // act
-      final result = await repository.saveWatchlistTVSeries(testTVSeriesDetail);
-      // assert
-      expect(result, Right('Added to Watchlist'));
-    });
-
-    test('should return DatabaseFailure when saving unsuccessful', () async {
-      // arrange
-      when(mockLocalDataSource.insertWatchlistTVSeries(testTVSeriesTable))
-          .thenThrow(DatabaseException('Failed to add watchlist'));
-      // act
-      final result = await repository.saveWatchlistTVSeries(testTVSeriesDetail);
-      // assert
-      expect(result, Left(DatabaseFailure('Failed to add watchlist')));
-    });
-  });
+  // group('save watchlist TV Series', () {
+  //   test('should return success message when saving successful', () async {
+  //     // arrange
+  //     when(mockLocalDataSource.insertWatchlistTVSeries(testTVSeriesTable))
+  //         .thenAnswer((_) async => 'Added to Watchlist');
+  //     // act
+  //     final result = await repository.saveWatchlistTVSeries(testTVSeriesDetail);
+  //     // assert
+  //     expect(result, Right('Added to Watchlist'));
+  //   });
+  //
+  //   test('should return DatabaseFailure when saving unsuccessful', () async {
+  //     // arrange
+  //     when(mockLocalDataSource.insertWatchlistTVSeries(testTVSeriesTable))
+  //         .thenThrow(DatabaseException('Failed to add watchlist'));
+  //     // act
+  //     final result = await repository.saveWatchlistTVSeries(testTVSeriesDetail);
+  //     // assert
+  //     expect(result, Left(DatabaseFailure('Failed to add watchlist')));
+  //   });
+  // });
 
   // group('remove watchlist TV Series', () {
   //   test('should return success message when remove successful', () async {
