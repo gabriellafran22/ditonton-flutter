@@ -44,6 +44,17 @@ class SearchPage extends StatelessWidget {
                   );
                 } else if (data.state == RequestState.Loaded) {
                   final result = data.searchResult;
+                  if (result.length == 0) {
+                    return Center(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        child: Text(
+                          'Movie Not Found',
+                          style: kHeading5,
+                        ),
+                      ),
+                    );
+                  }
                   return Expanded(
                     child: ListView.builder(
                       padding: const EdgeInsets.all(8),

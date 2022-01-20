@@ -318,7 +318,10 @@ class DetailContent extends StatelessWidget {
   String _showRuntime(List runtime) {
     int length = runtime.length;
     String episodeRuntime;
-    if (length < 2) {
+    if (length == 0) {
+      return '-';
+    }
+    else if (length < 2) {
       episodeRuntime = '${runtime[0].toString()} Minutes';
       return episodeRuntime;
     }

@@ -18,14 +18,14 @@ class TVSeriesModel extends Equatable {
     required this.voteCount,
   });
 
-  final String backdropPath;
-  final String firstAirDate;
+  final String? backdropPath;
+  final String? firstAirDate;
   final List<int> genreIds;
   final int id;
   final String name;
   final List<String> originCountry;
-  final String originalLanguage;
-  final String originalName;
+  final String? originalLanguage;
+  final String? originalName;
   final String overview;
   final double popularity;
   final String? posterPath;
@@ -33,14 +33,14 @@ class TVSeriesModel extends Equatable {
   final int voteCount;
 
   factory TVSeriesModel.fromJson(Map<String, dynamic> json) => TVSeriesModel(
-        backdropPath: json["backdrop_path"] ?? '',
-        firstAirDate: json["first_air_date"],
+        backdropPath: json["backdrop_path"] ?? '-',
+        firstAirDate: json["first_air_date"] ?? '-',
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
         id: json["id"],
         name: json["name"],
         originCountry: List<String>.from(json["origin_country"].map((x) => x)),
-        originalLanguage: json["original_language"],
-        originalName: json["original_name"],
+        originalLanguage: json["original_language"] ?? '-',
+        originalName: json["original_name"] ?? '-',
         overview: json["overview"],
         popularity: json["popularity"].toDouble(),
         posterPath: json["poster_path"],
