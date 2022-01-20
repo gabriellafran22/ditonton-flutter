@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class WatchlistMoviesPage extends StatefulWidget {
+  const WatchlistMoviesPage({Key? key}) : super(key: key);
+
 
   @override
   _WatchlistMoviesPageState createState() => _WatchlistMoviesPageState();
@@ -33,6 +35,7 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
     routeObserver.subscribe(this, ModalRoute.of(context)!);
   }
 
+  @override
   void didPopNext() {
     Provider.of<WatchlistMovieNotifier>(context, listen: false)
         .fetchWatchlistMovies();
@@ -44,19 +47,15 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Watchlist'),
+        title: const Text('Watchlist'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
           child: Provider.of<WatchlistMovieNotifier>(context, listen: false)
-                          .watchlistMovies
-                          .length ==
-                      0 &&
+                          .watchlistMovies.isEmpty &&
                   Provider.of<WatchlistTVSeriesNotifier>(context, listen: false)
-                          .watchlistTVSeries
-                          .length ==
-                      0
+                          .watchlistTVSeries.isEmpty
               ? Center(
                   child: Text(
                     'No Watchlist Added Yet',
@@ -64,7 +63,7 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
                   ),
                 )
               : Column(
-                  children: [
+                  children: const [
                     MovieWatchlist(),
                     SizedBox(
                       height: 20,
@@ -85,16 +84,18 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
 }
 
 class MovieWatchlist extends StatelessWidget {
+  const MovieWatchlist({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Consumer<WatchlistMovieNotifier>(
       builder: (context, data, child) {
         if (data.watchlistState == RequestState.Loading) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         } else if (data.watchlistState == RequestState.Loaded) {
-          if (data.watchlistMovies.length > 0) {
+          if (data.watchlistMovies.isNotEmpty) {
             return Column(
               children: [
                 Text(
@@ -102,7 +103,7 @@ class MovieWatchlist extends StatelessWidget {
                   style: kHeading5,
                 ),
                 ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     final movie = data.watchlistMovies[index];
@@ -116,7 +117,7 @@ class MovieWatchlist extends StatelessWidget {
           return Container();
         } else {
           return Center(
-            key: Key('error_message'),
+            key: const Key('error_message'),
             child: Text(data.message),
           );
         }
@@ -126,16 +127,18 @@ class MovieWatchlist extends StatelessWidget {
 }
 
 class TVSeriesWatchlist extends StatelessWidget {
+  const TVSeriesWatchlist({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Consumer<WatchlistTVSeriesNotifier>(
       builder: (context, data, child) {
         if (data.watchlistState == RequestState.Loading) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         } else if (data.watchlistState == RequestState.Loaded) {
-          if (data.watchlistTVSeries.length > 0) {
+          if (data.watchlistTVSeries.isNotEmpty) {
             return Column(
               children: [
                 Text(
@@ -143,7 +146,7 @@ class TVSeriesWatchlist extends StatelessWidget {
                   style: kHeading5,
                 ),
                 ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     final tvSeries = data.watchlistTVSeries[index];
@@ -157,7 +160,7 @@ class TVSeriesWatchlist extends StatelessWidget {
           return Container();
         } else {
           return Center(
-            key: Key('error_message'),
+            key: const Key('error_message'),
             child: Text(data.message),
           );
         }

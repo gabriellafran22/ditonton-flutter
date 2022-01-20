@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class TopRatedTVSeriesPage extends StatefulWidget {
+  const TopRatedTVSeriesPage({Key? key}) : super(key: key);
+
 
   @override
   _TopRatedTVSeriesPageState createState() => _TopRatedTVSeriesPageState();
@@ -23,14 +25,14 @@ class _TopRatedTVSeriesPageState extends State<TopRatedTVSeriesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Top Rated TV Series'),
+        title: const Text('Top Rated TV Series'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Consumer<TopRatedTVSeriesNotifier>(
           builder: (context, data, child) {
             if (data.state == RequestState.Loading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (data.state == RequestState.Loaded) {
@@ -43,7 +45,7 @@ class _TopRatedTVSeriesPageState extends State<TopRatedTVSeriesPage> {
               );
             } else {
               return Center(
-                key: Key('error_message'),
+                key: const Key('error_message'),
                 child: Text(data.message),
               );
             }

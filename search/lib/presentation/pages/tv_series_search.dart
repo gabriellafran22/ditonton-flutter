@@ -6,12 +6,14 @@ import 'package:provider/provider.dart';
 import 'package:search/presentation/provider/tv_series_search_notifier.dart';
 
 class TVSeriesSearchPage extends StatelessWidget {
+  const TVSeriesSearchPage({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search TV Series'),
+        title: const Text('Search TV Series'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -23,14 +25,14 @@ class TVSeriesSearchPage extends StatelessWidget {
                 Provider.of<TVSeriesSearchNotifier>(context, listen: false)
                     .fetchTVSeriesSearch(query);
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Search TV Series Title',
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(),
               ),
               textInputAction: TextInputAction.search,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               'Search Result',
               style: kHeading6,

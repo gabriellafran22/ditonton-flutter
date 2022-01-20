@@ -11,6 +11,8 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class TVSeriesPage extends StatefulWidget {
+  const TVSeriesPage({Key? key}) : super(key: key);
+
   @override
   _TVSeriesPageState createState() => _TVSeriesPageState();
 }
@@ -170,11 +172,11 @@ class _TVSeriesPageState extends State<TVSeriesPage> {
 class TVSeriesList extends StatelessWidget {
   final List<TVSeries> tvSeries;
 
-  TVSeriesList(this.tvSeries);
+  const TVSeriesList(this.tvSeries, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 200,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
