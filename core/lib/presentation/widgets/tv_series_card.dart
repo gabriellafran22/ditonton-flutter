@@ -1,9 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:core/core.dart';
+import 'package:core/domain/entities/tv_series.dart';
 import 'package:core/styles/text_styles.dart';
 import 'package:core/utils/constants.dart';
-import 'package:core/domain/entities/tv_series.dart';
-import 'package:core/presentation/pages/tv_series_detail_page.dart';
-
 import 'package:flutter/material.dart';
 
 class TVSeriesCard extends StatelessWidget {
@@ -19,7 +18,7 @@ class TVSeriesCard extends StatelessWidget {
         onTap: () {
           Navigator.pushNamed(
             context,
-            TVSeriesDetailPage.ROUTE_NAME,
+            tvSeriesDetailRoute,
             arguments: tvSeries.id,
           );
         },
@@ -42,7 +41,7 @@ class TVSeriesCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: kHeading6,
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Text(
                       tvSeries.overview ?? '-',
                       maxLines: 2,
@@ -66,7 +65,7 @@ class TVSeriesCard extends StatelessWidget {
                   ),
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
-                borderRadius: BorderRadius.all(Radius.circular(8)),
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
               ),
             ),
           ],

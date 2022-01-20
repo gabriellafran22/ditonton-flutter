@@ -82,47 +82,45 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData.dark().copyWith(
-          colorScheme: kColorScheme,
           primaryColor: kRichBlack,
-          accentColor: kMikadoYellow,
           scaffoldBackgroundColor: kRichBlack,
-          textTheme: kTextTheme,
+          textTheme: kTextTheme, colorScheme: kColorScheme.copyWith(secondary: kMikadoYellow),
         ),
         home: HomeMoviePage(),
         navigatorObservers: [routeObserver],
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
-            case HomeMoviePage.ROUTE_NAME:
+            case homeMoviesRoute:
               return MaterialPageRoute(builder: (_) => HomeMoviePage());
-            case PopularMoviesPage.ROUTE_NAME:
+            case popularMoviesRoute:
               return CupertinoPageRoute(builder: (_) => PopularMoviesPage());
-            case TopRatedMoviesPage.ROUTE_NAME:
+            case topRatedMoviesRoute:
               return CupertinoPageRoute(builder: (_) => TopRatedMoviesPage());
-            case MovieDetailPage.ROUTE_NAME:
+            case movieDetailRoute:
               final id = settings.arguments as int;
               return MaterialPageRoute(
                 builder: (_) => MovieDetailPage(id: id),
                 settings: settings,
               );
-            case SearchPage.ROUTE_NAME:
+            case searchRoute:
               return CupertinoPageRoute(builder: (_) => SearchPage());
-            case WatchlistMoviesPage.ROUTE_NAME:
+            case watchlistRoute:
               return MaterialPageRoute(builder: (_) => WatchlistMoviesPage());
-            case AboutPage.ROUTE_NAME:
+            case aboutRoute:
               return MaterialPageRoute(builder: (_) => AboutPage());
-            case TVSeriesPage.ROUTE_NAME:
+            case homeTVSeriesRoute:
               return MaterialPageRoute(builder: (_) => TVSeriesPage());
-            case PopularTVSeriesPage.ROUTE_NAME:
+            case popularTVSeriesRoute:
               return MaterialPageRoute(builder: (_) => PopularTVSeriesPage());
-            case TopRatedTVSeriesPage.ROUTE_NAME:
+            case topRatedTVSeriesRoute:
               return MaterialPageRoute(builder: (_) => TopRatedTVSeriesPage());
-            case TVSeriesDetailPage.ROUTE_NAME:
+            case tvSeriesDetailRoute:
               final id = settings.arguments as int;
               return MaterialPageRoute(
                 builder: (_) => TVSeriesDetailPage(id: id),
                 settings: settings,
               );
-            case TVSeriesSearchPage.ROUTE_NAME:
+            case searchTVSeriesRoute:
               return CupertinoPageRoute(builder: (_) => TVSeriesSearchPage());
             default:
               return MaterialPageRoute(builder: (_) {

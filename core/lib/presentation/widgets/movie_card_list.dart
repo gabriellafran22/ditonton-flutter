@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:core/core.dart';
+import 'package:core/domain/entities/movie.dart';
 import 'package:core/styles/text_styles.dart';
 import 'package:core/utils/constants.dart';
-import 'package:core/domain/entities/movie.dart';
-import 'package:core/presentation/pages/movie_detail_page.dart';
 import 'package:flutter/material.dart';
 
 class MovieCard extends StatelessWidget {
@@ -18,7 +18,7 @@ class MovieCard extends StatelessWidget {
         onTap: () {
           Navigator.pushNamed(
             context,
-            MovieDetailPage.ROUTE_NAME,
+            movieDetailRoute,
             arguments: movie.id,
           );
         },
@@ -41,7 +41,7 @@ class MovieCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: kHeading6,
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Text(
                       movie.overview ?? '-',
                       maxLines: 2,
@@ -65,7 +65,7 @@ class MovieCard extends StatelessWidget {
                   ),
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
-                borderRadius: BorderRadius.all(const Radius.circular(8)),
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
               ),
             ),
           ],

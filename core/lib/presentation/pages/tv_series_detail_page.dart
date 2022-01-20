@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:core/core.dart';
 import 'package:core/domain/entities/genre.dart';
 import 'package:core/domain/entities/tv_series.dart';
 import 'package:core/domain/entities/tv_series_detail.dart';
@@ -12,7 +13,6 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 
 class TVSeriesDetailPage extends StatefulWidget {
-  static const ROUTE_NAME = '/detail-tv-series';
 
   final int id;
 
@@ -233,7 +233,7 @@ class DetailContent extends StatelessWidget {
                                             onTap: () {
                                               Navigator.pushReplacementNamed(
                                                 context,
-                                                TVSeriesDetailPage.ROUTE_NAME,
+                                                tvSeriesDetailRoute,
                                                 arguments: tvSeries.id,
                                               );
                                             },
