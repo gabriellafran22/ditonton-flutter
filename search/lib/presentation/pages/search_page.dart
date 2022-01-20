@@ -1,6 +1,6 @@
 import 'package:core/styles/text_styles.dart';
 import 'package:core/utils/state_enum.dart';
-import 'package:core/presentation/provider/movie_search_notifier.dart';
+import 'package:search/presentation/provider/movie_search_notifier.dart';
 import 'package:core/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

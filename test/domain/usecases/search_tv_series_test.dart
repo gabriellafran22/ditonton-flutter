@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:core/domain/entities/tv_series.dart';
-import 'package:core/domain/usecases/search_tv_series.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:search/search.dart';
 
 import '../../helpers/test_helper.mocks.dart';
 

@@ -25,29 +25,24 @@ import 'package:core/domain/usecases/remove_watchlist.dart';
 import 'package:core/domain/usecases/remove_watchlist_tv_series.dart';
 import 'package:core/domain/usecases/save_watchlist.dart';
 import 'package:core/domain/usecases/save_watchlist_tv_series.dart';
-import 'package:core/domain/usecases/search_movies.dart';
-import 'package:core/domain/usecases/search_tv_series.dart';
 import 'package:core/presentation/provider/movie_detail_notifier.dart';
 import 'package:core/presentation/provider/movie_list_notifier.dart';
-import 'package:core/presentation/provider/movie_search_notifier.dart';
 import 'package:core/presentation/provider/popular_movies_notifier.dart';
 import 'package:core/presentation/provider/popular_tv_series_notifier.dart';
 import 'package:core/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:core/presentation/provider/top_rated_tv_series_notifier.dart';
 import 'package:core/presentation/provider/tv_series_detail_notifier.dart';
 import 'package:core/presentation/provider/tv_series_list_notifier.dart';
-import 'package:core/presentation/provider/tv_series_search_notifier.dart';
 import 'package:core/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:core/presentation/provider/watchlist_tv_series_notifier.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:search/search.dart';
 // import 'domain/usecases/get_popular_tv_series.dart';
 // import 'domain/usecases/get_tv_series_recommendations.dart';
 // import 'domain/usecases/search_tv_series.dart';
 
 final locator = GetIt.instance;
-//TODO: otak atik bagian ini
 void init() {
   // provider
   // movies
