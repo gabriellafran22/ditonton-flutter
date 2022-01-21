@@ -45,7 +45,7 @@ class TVSeriesSearchPage extends StatelessWidget {
                   );
                 } else if (data.state == RequestState.Loaded) {
                   final result = data.searchResult;
-                  if (result.length == 0) {
+                  if (result.isEmpty) {
                     return Center(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 20),
