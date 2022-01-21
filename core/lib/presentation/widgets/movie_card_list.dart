@@ -1,14 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
-import 'package:core/domain/entities/movie.dart';
-import 'package:core/styles/text_styles.dart';
-import 'package:core/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class MovieCard extends StatelessWidget {
   final Movie movie;
 
-  MovieCard(this.movie);
+  const MovieCard(this.movie, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

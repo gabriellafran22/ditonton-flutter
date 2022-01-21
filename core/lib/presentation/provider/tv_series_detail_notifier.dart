@@ -1,11 +1,4 @@
-import 'package:core/utils/state_enum.dart';
-import 'package:core/domain/entities/tv_series.dart';
-import 'package:core/domain/entities/tv_series_detail.dart';
-import 'package:core/domain/usecases/get_tv_series_detail.dart';
-import 'package:core/domain/usecases/get_tv_series_recommendations.dart';
-import 'package:core/domain/usecases/get_watchlist_status_tv_series.dart';
-import 'package:core/domain/usecases/remove_watchlist_tv_series.dart';
-import 'package:core/domain/usecases/save_watchlist_tv_series.dart';
+import 'package:core/core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -71,9 +64,9 @@ class TVSeriesDetailNotifier extends ChangeNotifier {
             _recommendationState = RequestState.Error;
             _message = failure.message;
           },
-          (tvSeriess) {
+          (tvSeries) {
             _recommendationState = RequestState.Loaded;
-            _tvSeriesRecommendations = tvSeriess;
+            _tvSeriesRecommendations = tvSeries;
           },
         );
         _tvSeriesState = RequestState.Loaded;

@@ -1,12 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
-import 'package:core/domain/entities/genre.dart';
-import 'package:core/domain/entities/tv_series.dart';
-import 'package:core/domain/entities/tv_series_detail.dart';
-import 'package:core/presentation/provider/tv_series_detail_notifier.dart';
-import 'package:core/styles/colors.dart';
-import 'package:core/styles/text_styles.dart';
-import 'package:core/utils/state_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -46,7 +39,7 @@ class _TVSeriesDetailPageState extends State<TVSeriesDetailPage> {
           } else if (provider.tvSeriesState == RequestState.Loaded) {
             final tvSeries = provider.tvSeries;
             return SafeArea(
-              child: DetailContent(
+              child: DetailContentTVSeries(
                 tvSeries,
                 provider.tvSeriesRecommendations,
                 provider.isAddedToWatchlist,
@@ -61,12 +54,12 @@ class _TVSeriesDetailPageState extends State<TVSeriesDetailPage> {
   }
 }
 
-class DetailContent extends StatelessWidget {
+class DetailContentTVSeries extends StatelessWidget {
   final TVSeriesDetail tvSeries;
   final List<TVSeries> recommendations;
   final bool isAddedWatchlist;
 
-  const DetailContent(this.tvSeries, this.recommendations, this.isAddedWatchlist, {Key? key}) : super(key: key);
+  const DetailContentTVSeries(this.tvSeries, this.recommendations, this.isAddedWatchlist, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

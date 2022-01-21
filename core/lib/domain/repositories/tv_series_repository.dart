@@ -1,9 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:core/utils/failure.dart';
-import 'package:core/domain/entities/tv_series.dart';
-import 'package:core/domain/entities/tv_series_detail.dart';
+import 'package:core/core.dart';
 
-//TODO: tambahin yg laen
 abstract class TVSeriesRepository {
   Future<Either<Failure, List<TVSeries>>> getNowPlayingTVSeries();
   Future<Either<Failure, List<TVSeries>>> getPopularTVSeries();

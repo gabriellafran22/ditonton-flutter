@@ -17,7 +17,6 @@ class TVSeries extends Equatable {
     required this.voteCount,
   });
 
-  //TODO: bagian ini blm tau beneran gni apa ga
   TVSeries.watchlist({
     required this.id,
     required this.overview,

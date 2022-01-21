@@ -1,6 +1,4 @@
-import 'package:core/utils/state_enum.dart';
-import 'package:core/domain/entities/tv_series.dart';
-import 'package:core/domain/usecases/get_top_rated_tv_series.dart';
+import 'package:core/core.dart';
 import 'package:flutter/foundation.dart';
 
 class TopRatedTVSeriesNotifier extends ChangeNotifier {

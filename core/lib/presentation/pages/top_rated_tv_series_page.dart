@@ -1,8 +1,6 @@
-import 'package:core/utils/state_enum.dart';
-import 'package:core/presentation/provider/top_rated_tv_series_notifier.dart';
-import 'package:core/presentation/widgets/tv_series_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:core/core.dart';
 
 class TopRatedTVSeriesPage extends StatefulWidget {
   const TopRatedTVSeriesPage({Key? key}) : super(key: key);
