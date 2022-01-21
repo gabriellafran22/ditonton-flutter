@@ -94,6 +94,11 @@ void init() {
       locator(),
     ),
   );
+  locator.registerFactory(
+        () => SearchTvSeriesBloc(
+      locator(),
+    ),
+  );
 
   // use case
   //movies

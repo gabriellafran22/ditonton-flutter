@@ -9,6 +9,7 @@ import 'package:search/search.dart';
 
 import 'search_bloc_test.mocks.dart';
 
+
 @GenerateMocks([SearchMovies])
 void main() {
   late SearchMoviesBloc searchBloc;
