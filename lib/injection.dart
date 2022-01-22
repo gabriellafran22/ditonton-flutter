@@ -81,12 +81,23 @@ void init() {
     ),
   );
   locator.registerFactory(
-        () => SearchTvSeriesBloc(
+        () => NowPlayingMoviesCubit(
       locator(),
     ),
   );
   locator.registerFactory(
         () => PopularMoviesCubit(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+        () => TopRatedMoviesCubit(
+      locator(),
+    ),
+  );
+  //tv series
+  locator.registerFactory(
+        () => SearchTvSeriesBloc(
       locator(),
     ),
   );

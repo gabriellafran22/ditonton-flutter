@@ -5,21 +5,21 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'popular_movies_cubit_test.mocks.dart';
+import 'now_playing_movies_cubit_test.mocks.dart';
 
 
-@GenerateMocks([GetPopularMovies])
+@GenerateMocks([GetNowPlayingMovies])
 void main() {
-  late PopularMoviesCubit popularMoviesCubit;
-  late MockGetPopularMovies mockPopularMovies;
+  late NowPlayingMoviesCubit nowPlayingMoviesCubit;
+  late MockGetNowPlayingMovies mockNowPlayingMovies;
 
   setUp(() {
-    mockPopularMovies = MockGetPopularMovies();
-    popularMoviesCubit = PopularMoviesCubit(mockPopularMovies);
+    mockNowPlayingMovies = MockGetNowPlayingMovies();
+    nowPlayingMoviesCubit = NowPlayingMoviesCubit(mockNowPlayingMovies);
   });
 
   test('initial state should be empty', () {
-    expect(popularMoviesCubit.state, PopularMoviesEmpty());
+    expect(nowPlayingMoviesCubit.state, NowPlayingMoviesEmpty());
   });
 
   final tMovieModel = Movie(
@@ -40,37 +40,37 @@ void main() {
   );
   final tMovieList = <Movie>[tMovieModel];
 
-  blocTest<PopularMoviesCubit, PopularMoviesState>(
-    'Should emit [Loading, HasData] when data of popular movies is gotten successfully',
+  blocTest<NowPlayingMoviesCubit, NowPlayingMoviesState>(
+    'Should emit [Loading, HasData] when data of nowPlaying movies is gotten successfully',
     build: () {
-      when(mockPopularMovies.execute())
+      when(mockNowPlayingMovies.execute())
           .thenAnswer((_) async => Right(tMovieList));
-      return popularMoviesCubit;
+      return nowPlayingMoviesCubit;
     },
-    act: (cubit) => cubit.getPopularMovies(),
+    act: (cubit) => cubit.getNowPlayingMovies(),
     expect: () => [
-      PopularMoviesLoading(),
-      PopularMoviesHasData(tMovieList),
+      NowPlayingMoviesLoading(),
+      NowPlayingMoviesHasData(tMovieList),
     ],
     verify: (cubit) {
-      verify(mockPopularMovies.execute());
+      verify(mockNowPlayingMovies.execute());
     },
   );
 
-  blocTest<PopularMoviesCubit, PopularMoviesState>(
-    'Should emit [Loading, Error] when get get popular movies is unsuccessful',
+  blocTest<NowPlayingMoviesCubit, NowPlayingMoviesState>(
+    'Should emit [Loading, Error] when get get nowPlaying movies is unsuccessful',
     build: () {
-      when(mockPopularMovies.execute())
+      when(mockNowPlayingMovies.execute())
           .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
-      return popularMoviesCubit;
+      return nowPlayingMoviesCubit;
     },
-    act: (cubit) => cubit.getPopularMovies(),
+    act: (cubit) => cubit.getNowPlayingMovies(),
     expect: () => [
-      PopularMoviesLoading(),
-      const PopularMoviesError('Server Failure'),
+      NowPlayingMoviesLoading(),
+      const NowPlayingMoviesError('Server Failure'),
     ],
     verify: (cubit) {
-      verify(mockPopularMovies.execute());
+      verify(mockNowPlayingMovies.execute());
     },
   );
 }

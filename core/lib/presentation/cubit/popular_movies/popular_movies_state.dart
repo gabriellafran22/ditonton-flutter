@@ -7,12 +7,6 @@ class PopularMoviesState extends Equatable {
   List<Object> get props => [];
 }
 
-
-// class PopularMoviesInitial extends PopularMoviesState {
-//   @override
-//   List<Object> get props => [];
-// }
-
 class PopularMoviesEmpty extends PopularMoviesState {}
 
 class PopularMoviesLoading extends PopularMoviesState {}
