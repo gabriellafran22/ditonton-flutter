@@ -1,11 +1,9 @@
 import 'package:core/presentation/widgets/tv_series_card.dart';
 import 'package:core/styles/text_styles.dart';
-import 'package:core/utils/state_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:search/presentation/bloc/search_tv_series/search_tv_series_bloc.dart';
-import 'package:search/presentation/provider/tv_series_search_notifier.dart';
 
 class TVSeriesSearchPage extends StatelessWidget {
   const TVSeriesSearchPage({Key? key}) : super(key: key);
