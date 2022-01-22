@@ -4,10 +4,6 @@ import 'package:search/presentation/bloc/search_movies/search_movies_bloc.dart';
 import 'package:search/search.dart';
 import 'package:core/core.dart';
 
-// import 'domain/usecases/get_popular_tv_series.dart';
-// import 'domain/usecases/get_tv_series_recommendations.dart';
-// import 'domain/usecases/search_tv_series.dart';
-
 final locator = GetIt.instance;
 
 void init() {
@@ -27,11 +23,6 @@ void init() {
       getWatchListStatus: locator(),
       saveWatchlist: locator(),
       removeWatchlist: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => MovieSearchNotifier(
-      searchMovies: locator(),
     ),
   );
   locator.registerFactory(
@@ -74,11 +65,6 @@ void init() {
       removeWatchlist: locator(),
       saveWatchlist: locator(),
       getWatchListStatus: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TVSeriesSearchNotifier(
-      searchTVSeries: locator(),
     ),
   );
   locator.registerFactory(
