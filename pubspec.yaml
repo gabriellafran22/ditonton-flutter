@@ -24,6 +24,8 @@ dependencies:
     path: core
   search:
     path: search
+  firebase_core: ^1.11.0
+  firebase_crashlytics: ^2.4.5
 
 dev_dependencies:
   mockito: ^5.0.8
