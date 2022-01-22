@@ -73,7 +73,7 @@ void init() {
     ),
   );
 
-  // bloc
+  // cubit
   // movies
   locator.registerFactory(
     () => SearchMoviesBloc(
@@ -82,6 +82,11 @@ void init() {
   );
   locator.registerFactory(
         () => SearchTvSeriesBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+        () => PopularMoviesCubit(
       locator(),
     ),
   );

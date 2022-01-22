@@ -87,3 +87,5 @@ export 'presentation/pages/watchlist_movies_page.dart';
 // presentation -> widgets
 export 'presentation/widgets/movie_card_list.dart';
 export 'presentation/widgets/tv_series_card.dart';
+// presentation -> cubit
+export 'presentation/cubit/popular_movies/popular_movies_cubit.dart';
