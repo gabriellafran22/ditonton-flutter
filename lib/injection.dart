@@ -118,6 +118,21 @@ void init() {
       locator(),
     ),
   );
+  locator.registerFactory(
+        () => NowPlayingTvSeriesCubit(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+        () => PopularTvSeriesCubit(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+        () => TopRatedTvSeriesCubit(
+      locator(),
+    ),
+  );
 
   // use case
   //movies

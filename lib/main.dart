@@ -52,6 +52,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<WatchlistTVSeriesNotifier>(),
         ),
+        // movies
         BlocProvider(
           create: (_) => di.locator<SearchMoviesBloc>(),
         ),
@@ -73,8 +74,18 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<MovieWatchlistCubit>(),
         ),
+        // tv series
         BlocProvider(
           create: (_) => di.locator<SearchTvSeriesBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<NowPlayingTvSeriesCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<PopularTvSeriesCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<TopRatedTvSeriesCubit>(),
         ),
       ],
       child: MaterialApp(

@@ -3,6 +3,7 @@ import 'package:core/core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 class TVSeriesPage extends StatefulWidget {
@@ -18,9 +19,12 @@ class _TVSeriesPageState extends State<TVSeriesPage> {
     super.initState();
     Future.microtask(
         () => Provider.of<TVSeriesListNotifier>(context, listen: false)
-          ..fetchNowPlayingTVSeries()
+          // ..fetchNowPlayingTVSeries()
           ..fetchPopularTVSeries()
           ..fetchTopRatedTVSeries());
+    context.read<NowPlayingTvSeriesCubit>().getNowPlayingTvSeries();
+    context.read<PopularTvSeriesCubit>().getPopularTvSeries();
+    context.read<TopRatedTvSeriesCubit>().getTopRatedTvSeries();
   }
 
   @override
@@ -89,52 +93,55 @@ class _TVSeriesPageState extends State<TVSeriesPage> {
                 'Now Playing',
                 style: kHeading6,
               ),
-              Consumer<TVSeriesListNotifier>(builder: (context, data, child) {
-                final state = data.nowPlayingState;
-                if (state == RequestState.Loading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (state == RequestState.Loaded) {
-                  return TVSeriesList(data.nowPlayingTVSeries);
-                } else {
-                  return const Text('Failed');
-                }
-              }),
+              BlocBuilder<NowPlayingTvSeriesCubit, NowPlayingTvSeriesState>(
+                builder: (context, state) {
+                  if (state is NowPlayingTvSeriesLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is NowPlayingTvSeriesHasData) {
+                    return TVSeriesList(state.result);
+                  } else {
+                    return const Text('Something Went Wrong');
+                  }
+                },
+              ),
               _buildSubHeading(
                 title: 'Popular',
                 onTap: () => Navigator.pushNamed(
                     context, popularTVSeriesRoute),
               ),
-              Consumer<TVSeriesListNotifier>(builder: (context, data, child) {
-                final state = data.popularTVSeriesState;
-                if (state == RequestState.Loading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (state == RequestState.Loaded) {
-                  return TVSeriesList(data.popularTVSeries);
-                } else {
-                  return const Text('Failed');
-                }
-              }),
+              BlocBuilder<PopularTvSeriesCubit, PopularTvSeriesState>(
+                builder: (context, state) {
+                  if (state is PopularTvSeriesLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is PopularTvSeriesHasData) {
+                    return TVSeriesList(state.result);
+                  } else {
+                    return const Text('Something Went Wrong');
+                  }
+                },
+              ),
               _buildSubHeading(
                 title: 'Top Rated',
                 onTap: () => Navigator.pushNamed(
                     context, topRatedTVSeriesRoute),
               ),
-              Consumer<TVSeriesListNotifier>(builder: (context, data, child) {
-                final state = data.topRatedTVSeriesState;
-                if (state == RequestState.Loading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (state == RequestState.Loaded) {
-                  return TVSeriesList(data.topRatedTVSeries);
-                } else {
-                  return const Text('Failed');
-                }
-              }),
+              BlocBuilder<TopRatedTvSeriesCubit, TopRatedTvSeriesState>(
+                builder: (context, state) {
+                  if (state is TopRatedTvSeriesLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is TopRatedTvSeriesHasData) {
+                    return TVSeriesList(state.result);
+                  } else {
+                    return const Text('Something Went Wrong');
+                  }
+                },
+              ),
             ],
           ),
         ),

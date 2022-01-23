@@ -94,3 +94,8 @@ export 'presentation/cubit/top_rated_movies//top_rated_movies_cubit.dart';
 export 'presentation/cubit/movie_detail/movie_detail_cubit.dart';
 export 'presentation/cubit/movie_detail_recommendations/movie_detail_recommendations_cubit.dart';
 export 'presentation/cubit/movie_watchlist/movie_watchlist_cubit.dart';
+// presentation -> cubit (tv series)
+export 'presentation/cubit/now_playing_tv_series/now_playing_tv_series_cubit.dart';
+export 'presentation/cubit/popular_tv_series/popular_tv_series_cubit.dart';
+export 'presentation/cubit/top_rated_tv_series/top_rated_tv_series_cubit.dart';
+
