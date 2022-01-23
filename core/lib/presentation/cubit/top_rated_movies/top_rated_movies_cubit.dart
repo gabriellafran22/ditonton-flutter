@@ -6,7 +6,6 @@ import 'package:equatable/equatable.dart';
 part 'top_rated_movies_state.dart';
 
 class TopRatedMoviesCubit extends Cubit<TopRatedMoviesState> {
-  final List<Movie> movies = [];
   final GetTopRatedMovies _topRatedMovies;
 
   TopRatedMoviesCubit(this._topRatedMovies) : super(TopRatedMoviesEmpty());

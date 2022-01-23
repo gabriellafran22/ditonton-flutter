@@ -6,14 +6,13 @@ import 'package:equatable/equatable.dart';
 part 'now_playing_movies_state.dart';
 
 class NowPlayingMoviesCubit extends Cubit<NowPlayingMoviesState> {
-  final List<Movie> movies = [];
-  final GetNowPlayingMovies _topRatedMovies;
+  final GetNowPlayingMovies _nowPlayingMovies;
 
-  NowPlayingMoviesCubit(this._topRatedMovies) : super(NowPlayingMoviesEmpty());
+  NowPlayingMoviesCubit(this._nowPlayingMovies) : super(NowPlayingMoviesEmpty());
 
   Future<void> getNowPlayingMovies() async {
     emit(NowPlayingMoviesLoading());
-    final result = await _topRatedMovies.execute();
+    final result = await _nowPlayingMovies.execute();
 
     result.fold(
           (failure) {

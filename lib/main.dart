@@ -65,6 +65,15 @@ class MyApp extends StatelessWidget {
           create: (_) => di.locator<TopRatedMoviesCubit>(),
         ),
         BlocProvider(
+          create: (_) => di.locator<MovieDetailCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<MovieDetailRecommendationsCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<MovieWatchlistCubit>(),
+        ),
+        BlocProvider(
           create: (_) => di.locator<SearchTvSeriesBloc>(),
         ),
       ],

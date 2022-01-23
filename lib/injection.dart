@@ -81,23 +81,40 @@ void init() {
     ),
   );
   locator.registerFactory(
-        () => NowPlayingMoviesCubit(
+    () => NowPlayingMoviesCubit(
       locator(),
     ),
   );
   locator.registerFactory(
-        () => PopularMoviesCubit(
+    () => PopularMoviesCubit(
       locator(),
     ),
   );
   locator.registerFactory(
-        () => TopRatedMoviesCubit(
+    () => TopRatedMoviesCubit(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => MovieDetailCubit(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+        () => MovieDetailRecommendationsCubit(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+        () => MovieWatchlistCubit(
+      locator(),
+      locator(),
       locator(),
     ),
   );
   //tv series
   locator.registerFactory(
-        () => SearchTvSeriesBloc(
+    () => SearchTvSeriesBloc(
       locator(),
     ),
   );
