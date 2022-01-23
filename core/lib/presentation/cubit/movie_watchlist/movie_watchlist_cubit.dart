@@ -5,9 +5,6 @@ import 'package:equatable/equatable.dart';
 part 'movie_watchlist_state.dart';
 
 class MovieWatchlistCubit extends Cubit<MovieWatchlistState> {
-  static const watchlistAddSuccessMessage = 'Added to Watchlist';
-  static const watchlistRemoveSuccessMessage = 'Removed from Watchlist';
-
   String message = '';
 
   final GetWatchListStatus getWatchListStatus;
@@ -60,11 +57,4 @@ class MovieWatchlistCubit extends Cubit<MovieWatchlistState> {
     await loadWatchlistStatus(movie.id);
   }
 
-// void increment() {
-//   emit(CounterState(state.value + 1));
-// }
-//
-// void decrement() {
-//   emit(CounterState(state.value - 1));
-// }
 }

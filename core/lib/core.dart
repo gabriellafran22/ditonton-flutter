@@ -98,4 +98,6 @@ export 'presentation/cubit/movie_watchlist/movie_watchlist_cubit.dart';
 export 'presentation/cubit/now_playing_tv_series/now_playing_tv_series_cubit.dart';
 export 'presentation/cubit/popular_tv_series/popular_tv_series_cubit.dart';
 export 'presentation/cubit/top_rated_tv_series/top_rated_tv_series_cubit.dart';
-
+export 'presentation/cubit/tv_series_detail/tv_series_detail_cubit.dart';
+export 'presentation/cubit/tv_series_detail_recommendations/tv_series_detail_recommendations_cubit.dart';
+export 'presentation/cubit/tv_series_watchlist/tv_series_watchlist_cubit.dart';

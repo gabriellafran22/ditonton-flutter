@@ -42,14 +42,12 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
             return SafeArea(
               child: DetailContent(
                 movie,
-                // ,
-                // provider.isAddedToWatchlist,
               ),
             );
           } else if (state is MovieDetailError) {
             return Text(state.message);
           } else {
-            return Text('Something Went Wrong');
+            return const Text('Something Went Wrong');
           }
         },
       ),
@@ -121,12 +119,9 @@ class DetailContent extends StatelessWidget {
                                         .read<MovieWatchlistCubit>()
                                         .message;
 
-                                    if (message ==
-                                            MovieWatchlistCubit
-                                                .watchlistAddSuccessMessage ||
+                                    if (message == watchlistAddSuccessMessage ||
                                         message ==
-                                            MovieWatchlistCubit
-                                                .watchlistRemoveSuccessMessage) {
+                                            watchlistRemoveSuccessMessage) {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         SnackBar(
@@ -246,7 +241,7 @@ class DetailContent extends StatelessWidget {
                                     is MovieDetailRecommendationsError) {
                                   return Text(state.message);
                                 } else {
-                                  return Text('Something Went Wrong');
+                                  return const Text('Something Went Wrong');
                                 }
                               },
                             ),

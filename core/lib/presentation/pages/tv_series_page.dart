@@ -17,11 +17,6 @@ class _TVSeriesPageState extends State<TVSeriesPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(
-        () => Provider.of<TVSeriesListNotifier>(context, listen: false)
-          // ..fetchNowPlayingTVSeries()
-          ..fetchPopularTVSeries()
-          ..fetchTopRatedTVSeries());
     context.read<NowPlayingTvSeriesCubit>().getNowPlayingTvSeries();
     context.read<PopularTvSeriesCubit>().getPopularTvSeries();
     context.read<TopRatedTvSeriesCubit>().getTopRatedTvSeries();
@@ -108,8 +103,7 @@ class _TVSeriesPageState extends State<TVSeriesPage> {
               ),
               _buildSubHeading(
                 title: 'Popular',
-                onTap: () => Navigator.pushNamed(
-                    context, popularTVSeriesRoute),
+                onTap: () => Navigator.pushNamed(context, popularTVSeriesRoute),
               ),
               BlocBuilder<PopularTvSeriesCubit, PopularTvSeriesState>(
                 builder: (context, state) {
@@ -126,8 +120,8 @@ class _TVSeriesPageState extends State<TVSeriesPage> {
               ),
               _buildSubHeading(
                 title: 'Top Rated',
-                onTap: () => Navigator.pushNamed(
-                    context, topRatedTVSeriesRoute),
+                onTap: () =>
+                    Navigator.pushNamed(context, topRatedTVSeriesRoute),
               ),
               BlocBuilder<TopRatedTvSeriesCubit, TopRatedTvSeriesState>(
                 builder: (context, state) {

@@ -133,6 +133,23 @@ void init() {
       locator(),
     ),
   );
+  locator.registerFactory(
+        () => TvSeriesDetailCubit(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+        () => TvSeriesDetailRecommendationsCubit(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+        () => TvSeriesWatchlistCubit(
+      locator(),
+      locator(),
+      locator(),
+    ),
+  );
 
   // use case
   //movies

@@ -87,6 +87,15 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<TopRatedTvSeriesCubit>(),
         ),
+        BlocProvider(
+          create: (_) => di.locator<TvSeriesDetailCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<TvSeriesDetailRecommendationsCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<TvSeriesWatchlistCubit>(),
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
