@@ -64,17 +64,6 @@ export 'domain/repositories/movie_repository.dart';
 export 'domain/repositories/tv_series_repository.dart';
 
 // presentation
-// presentation -> provider
-export 'presentation/provider/movie_detail_notifier.dart';
-export 'presentation/provider/movie_list_notifier.dart';
-export 'presentation/provider/popular_movies_notifier.dart';
-export 'presentation/provider/popular_tv_series_notifier.dart';
-export 'presentation/provider/top_rated_movies_notifier.dart';
-export 'presentation/provider/top_rated_tv_series_notifier.dart';
-export 'presentation/provider/tv_series_detail_notifier.dart';
-export 'presentation/provider/tv_series_list_notifier.dart';
-export 'presentation/provider/watchlist_movie_notifier.dart';
-export 'presentation/provider/watchlist_tv_series_notifier.dart';
 // presentation -> pages
 export 'presentation/pages/movie_detail_page.dart';
 export 'presentation/pages/home_movie_page.dart';
