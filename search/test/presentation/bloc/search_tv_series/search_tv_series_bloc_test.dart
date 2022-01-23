@@ -25,7 +25,7 @@ void main() {
 
   final tTVSeriesModel = TVSeries(
     backdropPath: '/oKt4J3TFjWirVwBqoHyIvv5IImd.jpg',
-    genreIds: [18],
+    genreIds: const [18],
     id: 85552,
     name: 'Euphoria',
     overview:
@@ -37,7 +37,7 @@ void main() {
     firstAirDate: '2019-06-16',
     originalLanguage: 'en',
     originalName: 'Euphoria',
-    originCountry: ['US'],
+    originCountry: const ['US'],
   );
   final tTVSeriesList = <TVSeries>[tTVSeriesModel];
   const tQuery = 'euphoria';
