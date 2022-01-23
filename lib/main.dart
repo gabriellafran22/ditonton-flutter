@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:about/about.dart';
 import 'package:core/core.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -11,6 +13,7 @@ import 'package:ditonton/injection.dart' as di;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  HttpOverrides.global = new MyHttpOverrides();
   di.init();
   runApp(MyApp());
 }
