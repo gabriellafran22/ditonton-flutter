@@ -13,7 +13,7 @@ void main() {
     usecase = GetWatchListStatusTVSeries(mockTVSeriesRepository);
   });
 
-  test('should get watchlist status of TV Series from repository', () async {
+  test('should get get_watchlist_movies status of TV Series from repository', () async {
     // arrange
     when(mockTVSeriesRepository.isAddedToWatchlistTVSeries(1))
         .thenAnswer((_) async => true);

@@ -32,7 +32,7 @@ void main() {
   });
 
   blocTest<MovieWatchlistCubit, MovieWatchlistState>(
-    'Should emit watchlist status',
+    'Should emit get_watchlist_movies status',
     build: () {
       when(mockGetWatchListStatus.execute(1)).thenAnswer((_) async => true);
       return movieWatchlistCubit;
@@ -47,7 +47,7 @@ void main() {
   );
 
   blocTest<MovieWatchlistCubit, MovieWatchlistState>(
-    'Should emit add to watchlist',
+    'Should emit add to get_watchlist_movies',
     build: () {
       when(mockSaveWatchlist.execute(testMovieDetail))
           .thenAnswer((_) async => const Right('Success'));
@@ -66,7 +66,7 @@ void main() {
   );
 
   blocTest<MovieWatchlistCubit, MovieWatchlistState>(
-    'Should emit remove from watchlist',
+    'Should emit remove from get_watchlist_movies',
     build: () {
       when(mockRemoveWatchlist.execute(testMovieDetail))
           .thenAnswer((_) async => const Right('Removed'));

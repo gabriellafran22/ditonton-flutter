@@ -112,6 +112,11 @@ void init() {
       locator(),
     ),
   );
+  locator.registerFactory(
+        () => GetWatchlistMoviesCubit(
+      locator(),
+    ),
+  );
   //tv series
   locator.registerFactory(
     () => SearchTvSeriesBloc(
@@ -147,6 +152,11 @@ void init() {
         () => TvSeriesWatchlistCubit(
       locator(),
       locator(),
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+        () => GetWatchlistTvSeriesCubit(
       locator(),
     ),
   );

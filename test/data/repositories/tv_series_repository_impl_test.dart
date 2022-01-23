@@ -340,7 +340,7 @@ void main() {
     });
   });
 
-  group('get watchlist status TV Series', () {
+  group('get get_watchlist_movies status TV Series', () {
     test('should return watch status whether data is found', () async {
       // arrange
       final tId = 1;
@@ -353,7 +353,7 @@ void main() {
     });
   });
 
-  group('get watchlist TV Series', () {
+  group('get get_watchlist_movies TV Series', () {
     test('should return list of Movies', () async {
       // arrange
       when(mockLocalDataSource.getWatchlistTVSeries())

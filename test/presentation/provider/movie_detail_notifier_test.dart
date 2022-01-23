@@ -156,7 +156,7 @@ void main() {
   });
 
   group('Watchlist', () {
-    test('should get the watchlist status', () async {
+    test('should get the get_watchlist_movies status', () async {
       // arrange
       when(mockGetWatchlistStatus.execute(1)).thenAnswer((_) async => true);
       // act
@@ -165,7 +165,7 @@ void main() {
       expect(provider.isAddedToWatchlist, true);
     });
 
-    test('should execute save watchlist when function called', () async {
+    test('should execute save get_watchlist_movies when function called', () async {
       // arrange
       when(mockSaveWatchlist.execute(testMovieDetail))
           .thenAnswer((_) async => Right('Success'));
@@ -177,7 +177,7 @@ void main() {
       verify(mockSaveWatchlist.execute(testMovieDetail));
     });
 
-    test('should execute remove watchlist when function called', () async {
+    test('should execute remove get_watchlist_movies when function called', () async {
       // arrange
       when(mockRemoveWatchlist.execute(testMovieDetail))
           .thenAnswer((_) async => Right('Removed'));
@@ -189,7 +189,7 @@ void main() {
       verify(mockRemoveWatchlist.execute(testMovieDetail));
     });
 
-    test('should update watchlist status when add watchlist success', () async {
+    test('should update get_watchlist_movies status when add get_watchlist_movies success', () async {
       // arrange
       when(mockSaveWatchlist.execute(testMovieDetail))
           .thenAnswer((_) async => Right('Added to Watchlist'));
@@ -204,7 +204,7 @@ void main() {
       expect(listenerCallCount, 1);
     });
 
-    test('should update watchlist message when add watchlist failed', () async {
+    test('should update get_watchlist_movies message when add get_watchlist_movies failed', () async {
       // arrange
       when(mockSaveWatchlist.execute(testMovieDetail))
           .thenAnswer((_) async => Left(DatabaseFailure('Failed')));

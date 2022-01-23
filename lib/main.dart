@@ -74,6 +74,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<MovieWatchlistCubit>(),
         ),
+        BlocProvider(
+          create: (_) => di.locator<GetWatchlistMoviesCubit>(),
+        ),
         // tv series
         BlocProvider(
           create: (_) => di.locator<SearchTvSeriesBloc>(),
@@ -95,6 +98,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => di.locator<TvSeriesWatchlistCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<GetWatchlistTvSeriesCubit>(),
         ),
       ],
       child: MaterialApp(

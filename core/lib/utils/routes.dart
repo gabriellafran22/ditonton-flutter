@@ -11,4 +11,4 @@ const tvSeriesDetailRoute = '/detail-tv-series';
 const searchTVSeriesRoute = '/search-tv-series';
 
 const aboutRoute = '/about';
-const watchlistRoute = '/watchlist';
+const watchlistRoute = '/get_watchlist_movies';

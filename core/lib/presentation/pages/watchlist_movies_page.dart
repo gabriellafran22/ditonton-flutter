@@ -1,10 +1,11 @@
 import 'package:core/core.dart';
+import 'package:core/presentation/cubit/get_watchlist_movies/get_watchlist_movies_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 class WatchlistMoviesPage extends StatefulWidget {
   const WatchlistMoviesPage({Key? key}) : super(key: key);
-
 
   @override
   _WatchlistMoviesPageState createState() => _WatchlistMoviesPageState();
@@ -15,12 +16,8 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<WatchlistMovieNotifier>(context, listen: false)
-            .fetchWatchlistMovies());
-    Future.microtask(() =>
-        Provider.of<WatchlistTVSeriesNotifier>(context, listen: false)
-            .fetchWatchlistTVSeries());
+    context.read<GetWatchlistMoviesCubit>().getWatchlistMovies();
+    context.read<GetWatchlistTvSeriesCubit>().getWatchlistTvSeries();
   }
 
   @override
@@ -31,10 +28,8 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
 
   @override
   void didPopNext() {
-    Provider.of<WatchlistMovieNotifier>(context, listen: false)
-        .fetchWatchlistMovies();
-    Provider.of<WatchlistTVSeriesNotifier>(context, listen: false)
-        .fetchWatchlistTVSeries();
+    context.read<GetWatchlistMoviesCubit>().getWatchlistMovies();
+    context.read<GetWatchlistTvSeriesCubit>().getWatchlistTvSeries();
   }
 
   @override
@@ -46,25 +41,15 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
-          child: Provider.of<WatchlistMovieNotifier>(context, listen: false)
-                          .watchlistMovies.isEmpty &&
-                  Provider.of<WatchlistTVSeriesNotifier>(context, listen: false)
-                          .watchlistTVSeries.isEmpty
-              ? Center(
-                  child: Text(
-                    'No Watchlist Added Yet',
-                    style: kHeading5,
-                  ),
-                )
-              : Column(
-                  children: const [
-                    MovieWatchlist(),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TVSeriesWatchlist(),
-                  ],
-                ),
+          child: Column(
+            children: const [
+              MovieWatchlist(),
+              SizedBox(
+                height: 20,
+              ),
+              TVSeriesWatchlist(),
+            ],
+          ),
         ),
       ),
     );
@@ -82,14 +67,14 @@ class MovieWatchlist extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<WatchlistMovieNotifier>(
-      builder: (context, data, child) {
-        if (data.watchlistState == RequestState.Loading) {
+    return BlocBuilder<GetWatchlistMoviesCubit, GetWatchlistMoviesState>(
+      builder: (context, state) {
+        if (state is GetWatchlistMoviesLoading) {
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (data.watchlistState == RequestState.Loaded) {
-          if (data.watchlistMovies.isNotEmpty) {
+        } else if (state is GetWatchlistMoviesHasData) {
+          if (state.result.isNotEmpty) {
             return Column(
               children: [
                 Text(
@@ -100,20 +85,17 @@ class MovieWatchlist extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
-                    final movie = data.watchlistMovies[index];
+                    final movie = state.result[index];
                     return MovieCard(movie);
                   },
-                  itemCount: data.watchlistMovies.length,
+                  itemCount: state.result.length,
                 ),
               ],
             );
           }
           return Container();
         } else {
-          return Center(
-            key: const Key('error_message'),
-            child: Text(data.message),
-          );
+          return const Text('Something Went Wrong');
         }
       },
     );
@@ -125,14 +107,14 @@ class TVSeriesWatchlist extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<WatchlistTVSeriesNotifier>(
-      builder: (context, data, child) {
-        if (data.watchlistState == RequestState.Loading) {
+    return BlocBuilder<GetWatchlistTvSeriesCubit, GetWatchlistTvSeriesState>(
+      builder: (context, state) {
+        if (state is GetWatchlistTvSeriesLoading) {
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (data.watchlistState == RequestState.Loaded) {
-          if (data.watchlistTVSeries.isNotEmpty) {
+        } else if (state is GetWatchlistTvSeriesHasData) {
+          if (state.result.isNotEmpty) {
             return Column(
               children: [
                 Text(
@@ -143,20 +125,17 @@ class TVSeriesWatchlist extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
-                    final tvSeries = data.watchlistTVSeries[index];
+                    final tvSeries = state.result[index];
                     return TVSeriesCard(tvSeries);
                   },
-                  itemCount: data.watchlistTVSeries.length,
+                  itemCount: state.result.length,
                 ),
               ],
             );
           }
           return Container();
         } else {
-          return Center(
-            key: const Key('error_message'),
-            child: Text(data.message),
-          );
+          return const Text('Something Went Wrong');
         }
       },
     );

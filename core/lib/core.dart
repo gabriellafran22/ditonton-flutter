@@ -87,6 +87,9 @@ export 'presentation/pages/watchlist_movies_page.dart';
 // presentation -> widgets
 export 'presentation/widgets/movie_card_list.dart';
 export 'presentation/widgets/tv_series_card.dart';
+// presentation -> cubit
+export 'presentation/cubit/get_watchlist_movies/get_watchlist_movies_cubit.dart';
+export 'presentation/cubit/get_watchlist_tv_series/get_watchlist_tv_series_cubit.dart';
 // presentation -> cubit (movies)
 export 'presentation/cubit/now_playing_movies/now_playing_movies_cubit.dart';
 export 'presentation/cubit/popular_movies/popular_movies_cubit.dart';
@@ -101,3 +104,4 @@ export 'presentation/cubit/top_rated_tv_series/top_rated_tv_series_cubit.dart';
 export 'presentation/cubit/tv_series_detail/tv_series_detail_cubit.dart';
 export 'presentation/cubit/tv_series_detail_recommendations/tv_series_detail_recommendations_cubit.dart';
 export 'presentation/cubit/tv_series_watchlist/tv_series_watchlist_cubit.dart';
+
