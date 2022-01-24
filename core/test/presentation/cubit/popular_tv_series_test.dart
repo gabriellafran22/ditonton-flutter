@@ -61,7 +61,7 @@ void main() {
     'Should emit [Loading, Error] when get get popular movies is unsuccessful',
     build: () {
       when(mockPopularTvSeries.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       return popularTvSeriesCubit;
     },
     act: (cubit) => cubit.getPopularTvSeries(),

@@ -61,7 +61,7 @@ void main() {
     'Should emit [Loading, Error] when get get topRated movies is unsuccessful',
     build: () {
       when(mockTopRatedTvSeries.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       return topRatedTvSeriesCubit;
     },
     act: (cubit) => cubit.getTopRatedTvSeries(),

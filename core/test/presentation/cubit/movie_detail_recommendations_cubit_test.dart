@@ -61,7 +61,7 @@ void main() {
     'Should emit [Loading, Error] when get get movie recommendations movies is unsuccessful',
     build: () {
       when(mockGetMovieRecommendations.execute(tId))
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       return movieDetailRecommendationsCubit;
     },
     act: (cubit) => cubit.getMovieDetailRecommendations(tId),

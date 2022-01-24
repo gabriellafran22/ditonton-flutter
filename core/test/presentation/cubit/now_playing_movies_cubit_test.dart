@@ -61,7 +61,7 @@ void main() {
     'Should emit [Loading, Error] when get get nowPlaying movies is unsuccessful',
     build: () {
       when(mockNowPlayingMovies.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       return nowPlayingMoviesCubit;
     },
     act: (cubit) => cubit.getNowPlayingMovies(),

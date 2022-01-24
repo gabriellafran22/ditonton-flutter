@@ -58,7 +58,7 @@ void main() {
       'should return error when data is unsuccessful',
     build: () {
       when(mockGetWatchlistMovies.execute())
-          .thenAnswer((_) async => Left(DatabaseFailure("Can't get data")));
+          .thenAnswer((_) async => const Left(DatabaseFailure("Can't get data")));
       return getWatchlistMoviesCubit;
     },
     act: (cubit) => cubit.getWatchlistMovies(),

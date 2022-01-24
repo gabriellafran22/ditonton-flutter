@@ -28,13 +28,13 @@ void main() {
     'Should emit [Loading, HasData] when data of movie detail is gotten successfully',
     build: () {
       when(mockMovieDetail.execute(tId))
-          .thenAnswer((_) async => Right(testMovieDetail));
+          .thenAnswer((_) async => const Right(testMovieDetail));
       return movieDetailCubit;
     },
     act: (cubit) => cubit.getMovieDetail(tId),
     expect: () => [
       MovieDetailLoading(),
-      MovieDetailHasData(testMovieDetail),
+      const MovieDetailHasData(testMovieDetail),
     ],
     verify: (cubit) {
       verify(mockMovieDetail.execute(tId));
@@ -45,7 +45,7 @@ void main() {
     'Should emit [Loading, Error] when get get movie detail is unsuccessful',
     build: () {
       when(mockMovieDetail.execute(tId))
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       return movieDetailCubit;
     },
     act: (cubit) => cubit.getMovieDetail(tId),
