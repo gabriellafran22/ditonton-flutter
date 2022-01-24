@@ -4,7 +4,6 @@ import 'package:core/data/models/movie_table.dart';
 import 'package:core/data/models/tv_series_table.dart';
 import 'package:core/utils/encrypt.dart';
 
-// import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_sqlcipher/sqflite.dart';
 
 class DatabaseHelper {
