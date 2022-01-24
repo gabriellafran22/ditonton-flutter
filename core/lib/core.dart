@@ -11,7 +11,7 @@ export 'utils/failure.dart';
 export 'utils/state_enum.dart';
 export 'utils/utils.dart';
 export 'utils/routes.dart';
-export 'utils/http_ssl_pinning.dart';
+export 'utils/ssl_pinning.dart';
 
 // data
 // data -> data sources

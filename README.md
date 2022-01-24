@@ -4,4 +4,12 @@
 
 This is a project needed to fulfill Flutter Expert class from [Dicoding]
 
+This project involves using:
+- BLoC
+- SSL Pinning
+- Database Encryption
+- Firebase Crashlytics
+- Codemagic Continuous Integration
+
+
 [Dicoding]: <https://www.dicoding.com/>
