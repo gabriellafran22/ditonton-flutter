@@ -3,6 +3,7 @@ import 'package:core/presentation/cubit/get_watchlist_movies/get_watchlist_movie
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:tv_series/tv_series.dart';
 
 class WatchlistMoviesPage extends StatefulWidget {
   const WatchlistMoviesPage({Key? key}) : super(key: key);

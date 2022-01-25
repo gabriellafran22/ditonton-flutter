@@ -1,5 +1,5 @@
-import 'package:core/domain/entities/tv_series.dart';
-import 'package:core/domain/repositories/tv_series_repository.dart';
+import 'package:tv_series/domain/entities/tv_series.dart';
+import 'package:tv_series/domain/repositories/tv_series_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';

@@ -22,6 +22,8 @@ dependencies:
     path: core
   search:
     path: search
+  tv_series:
+    path: tv_series
   firebase_core: ^1.11.0
   firebase_crashlytics: ^2.4.5
 
