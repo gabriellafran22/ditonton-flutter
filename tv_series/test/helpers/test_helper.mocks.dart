@@ -7,10 +7,10 @@ import 'dart:convert' as _i12;
 import 'dart:typed_data' as _i13;
 
 import 'package:core/core.dart' as _i5;
-import 'package:core/data/models/movie_table.dart' as _i8;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:http/http.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:movies/data/models/movie_table.dart' as _i8;
 import 'package:sqflite_sqlcipher/sqflite.dart' as _i7;
 import 'package:tv_series/data/models/tv_series_table.dart' as _i9;
 import 'package:tv_series/domain/entities/tv_series.dart' as _i10;
