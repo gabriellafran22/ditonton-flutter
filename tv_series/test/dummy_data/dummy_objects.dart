@@ -25,7 +25,7 @@ const testTVSeriesDetail = TVSeriesDetail(
   adult: false,
   backdropPath: 'backdropPath',
   genres: [Genre(id: 18, name: 'Drama')],
-  id: 4,
+  id: 1,
   overview: 'overview',
   posterPath: 'posterPath',
   voteAverage: 7.5,

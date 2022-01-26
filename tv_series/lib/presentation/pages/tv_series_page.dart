@@ -89,54 +89,18 @@ class _TVSeriesPageState extends State<TVSeriesPage> {
                 'Now Playing',
                 style: kHeading6,
               ),
-              BlocBuilder<NowPlayingTvSeriesCubit, NowPlayingTvSeriesState>(
-                builder: (context, state) {
-                  if (state is NowPlayingTvSeriesLoading) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else if (state is NowPlayingTvSeriesHasData) {
-                    return TVSeriesList(state.result);
-                  } else {
-                    return const Text('Something Went Wrong');
-                  }
-                },
-              ),
+              const NowPlayingTvSeriesWidget(),
               _buildSubHeading(
                 title: 'Popular',
                 onTap: () => Navigator.pushNamed(context, popularTVSeriesRoute),
               ),
-              BlocBuilder<PopularTvSeriesCubit, PopularTvSeriesState>(
-                builder: (context, state) {
-                  if (state is PopularTvSeriesLoading) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else if (state is PopularTvSeriesHasData) {
-                    return TVSeriesList(state.result);
-                  } else {
-                    return const Text('Something Went Wrong');
-                  }
-                },
-              ),
+              const PopularTvSeriesWidget(),
               _buildSubHeading(
                 title: 'Top Rated',
                 onTap: () =>
                     Navigator.pushNamed(context, topRatedTVSeriesRoute),
               ),
-              BlocBuilder<TopRatedTvSeriesCubit, TopRatedTvSeriesState>(
-                builder: (context, state) {
-                  if (state is TopRatedTvSeriesLoading) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else if (state is TopRatedTvSeriesHasData) {
-                    return TVSeriesList(state.result);
-                  } else {
-                    return const Text('Something Went Wrong');
-                  }
-                },
-              ),
+              const TopRatedTvSeriesWidget(),
             ],
           ),
         ),
@@ -166,6 +130,69 @@ class _TVSeriesPageState extends State<TVSeriesPage> {
   }
 }
 
+class NowPlayingTvSeriesWidget extends StatelessWidget {
+  const NowPlayingTvSeriesWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<NowPlayingTvSeriesCubit, NowPlayingTvSeriesState>(
+      builder: (context, state) {
+        if (state is NowPlayingTvSeriesLoading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is NowPlayingTvSeriesHasData) {
+          return TVSeriesList(state.result);
+        } else {
+          return const Text('Something Went Wrong');
+        }
+      },
+    );
+  }
+}
+
+class PopularTvSeriesWidget extends StatelessWidget {
+  const PopularTvSeriesWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<PopularTvSeriesCubit, PopularTvSeriesState>(
+      builder: (context, state) {
+        if (state is PopularTvSeriesLoading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is PopularTvSeriesHasData) {
+          return TVSeriesList(state.result);
+        } else {
+          return const Text('Something Went Wrong');
+        }
+      },
+    );
+  }
+}
+
+class TopRatedTvSeriesWidget extends StatelessWidget {
+  const TopRatedTvSeriesWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<TopRatedTvSeriesCubit, TopRatedTvSeriesState>(
+      builder: (context, state) {
+        if (state is TopRatedTvSeriesLoading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is TopRatedTvSeriesHasData) {
+          return TVSeriesList(state.result);
+        } else {
+          return const Text('Something Went Wrong');
+        }
+      },
+    );
+  }
+}
+
 class TVSeriesList extends StatelessWidget {
   final List<TVSeries> tvSeries;
 
@@ -179,24 +206,27 @@ class TVSeriesList extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           final movie = tvSeries[index];
-          return Container(
-            padding: const EdgeInsets.all(8),
-            child: InkWell(
-              onTap: () {
-                Navigator.pushNamed(
-                  context,
-                  tvSeriesDetailRoute,
-                  arguments: tvSeries[index].id,
-                );
-              },
-              child: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(16)),
-                child: CachedNetworkImage(
-                  imageUrl: '$BASE_IMAGE_URL${movie.posterPath}',
-                  placeholder: (context, url) => const Center(
-                    child: CircularProgressIndicator(),
+          return Card(
+            color: kRichBlack,
+            child: Padding(
+              padding: const EdgeInsets.all(4),
+              child: InkWell(
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    tvSeriesDetailRoute,
+                    arguments: tvSeries[index].id,
+                  );
+                },
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(16)),
+                  child: CachedNetworkImage(
+                    imageUrl: '$BASE_IMAGE_URL${movie.posterPath}',
+                    placeholder: (context, url) => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
                   ),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
             ),

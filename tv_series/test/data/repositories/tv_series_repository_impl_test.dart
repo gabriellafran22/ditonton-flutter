@@ -189,7 +189,7 @@ void main() {
       adult: false,
       backdropPath: 'backdropPath',
       genres: [GenreModel(id: 18, name: 'Drama')],
-      id: 4,
+      id: 1,
       overview: 'overview',
       posterPath: 'posterPath',
       voteAverage: 7.5,
@@ -340,7 +340,53 @@ void main() {
     });
   });
 
-  group('get get_watchlist_movies status TV Series', () {
+  group('save get_watchlist_tv_series', () {
+    test('should return success message when saving successful', () async {
+      // arrange
+      when(mockLocalDataSource.insertWatchlistTVSeries(testTVSeriesTable))
+          .thenAnswer((_) async => 'Added to Watchlist');
+      // act
+      final result = await repository.saveWatchlistTVSeries(testTVSeriesDetail);
+      // assert
+      expect(result, const Right('Added to Watchlist'));
+    });
+
+    test('should return DatabaseFailure when saving unsuccessful', () async {
+      // arrange
+      when(mockLocalDataSource.insertWatchlistTVSeries(testTVSeriesTable))
+          .thenThrow(DatabaseException('Failed to add get_watchlist_movies'));
+      // act
+      final result = await repository.saveWatchlistTVSeries(testTVSeriesDetail);
+      // assert
+      expect(
+          result, const Left(DatabaseFailure('Failed to add get_watchlist_movies')));
+    });
+  });
+
+  group('remove get_watchlist_tv_series', () {
+    test('should return success message when remove successful', () async {
+      // arrange
+      when(mockLocalDataSource.removeWatchlistTVSeries(testTVSeriesTable))
+          .thenAnswer((_) async => 'Removed from get_watchlist_tv_series');
+      // act
+      final result = await repository.removeWatchlistTVSeries(testTVSeriesDetail);
+      // assert
+      expect(result, const Right('Removed from get_watchlist_tv_series'));
+    });
+
+    test('should return DatabaseFailure when remove unsuccessful', () async {
+      // arrange
+      when(mockLocalDataSource.removeWatchlistTVSeries(testTVSeriesTable)).thenThrow(
+          DatabaseException('Failed to remove get_watchlist_tv_series'));
+      // act
+      final result = await repository.removeWatchlistTVSeries(testTVSeriesDetail);
+      // assert
+      expect(result,
+          const Left(DatabaseFailure('Failed to remove get_watchlist_tv_series')));
+    });
+  });
+
+  group('get get_watchlist_tv_series status TV Series', () {
     test('should return watch status whether data is found', () async {
       // arrange
       const tId = 1;
@@ -353,8 +399,8 @@ void main() {
     });
   });
 
-  group('get get_watchlist_movies TV Series', () {
-    test('should return list of Movies', () async {
+  group('get get_watchlist_tv_series TV Series', () {
+    test('should return list of tv series', () async {
       // arrange
       when(mockLocalDataSource.getWatchlistTVSeries())
           .thenAnswer((_) async => [testTVSeriesTable]);

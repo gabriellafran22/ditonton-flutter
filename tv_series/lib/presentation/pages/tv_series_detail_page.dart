@@ -202,65 +202,7 @@ class DetailContentTVSeries extends StatelessWidget {
                               'Recommendations',
                               style: kHeading6,
                             ),
-                            BlocBuilder<TvSeriesDetailRecommendationsCubit,
-                                TvSeriesDetailRecommendationsState>(
-                              builder: (context, state) {
-                                if (state
-                                    is TvSeriesDetailRecommendationsLoading) {
-                                  return const Center(
-                                    child: CircularProgressIndicator(),
-                                  );
-                                } else if (state
-                                    is TvSeriesDetailRecommendationsHasData) {
-                                  final recommendations = state.recommendations;
-                                  return SizedBox(
-                                    height: 150,
-                                    child: ListView.builder(
-                                      scrollDirection: Axis.horizontal,
-                                      itemBuilder: (context, index) {
-                                        final tvSeries = recommendations[index];
-                                        return Padding(
-                                          padding: const EdgeInsets.all(4.0),
-                                          child: InkWell(
-                                            onTap: () {
-                                              Navigator.pushReplacementNamed(
-                                                context,
-                                                tvSeriesDetailRoute,
-                                                arguments: tvSeries.id,
-                                              );
-                                            },
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  const BorderRadius.all(
-                                                Radius.circular(8),
-                                              ),
-                                              child: CachedNetworkImage(
-                                                imageUrl:
-                                                    'https://image.tmdb.org/t/p/w500${tvSeries.posterPath}',
-                                                placeholder: (context, url) =>
-                                                    const Center(
-                                                  child:
-                                                      CircularProgressIndicator(),
-                                                ),
-                                                errorWidget:
-                                                    (context, url, error) =>
-                                                        const Icon(Icons.error),
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      itemCount: recommendations.length,
-                                    ),
-                                  );
-                                } else if (state
-                                    is TvSeriesDetailRecommendationsError) {
-                                  return Text(state.message);
-                                } else {
-                                  return const Text('Something Went Wrong');
-                                }
-                              },
-                            ),
+                            const TvSeriesDetailRecommendations(),
                           ],
                         ),
                       ),
@@ -341,6 +283,69 @@ class DetailContentTVSeries extends StatelessWidget {
           content,
         ),
       ],
+    );
+  }
+}
+
+class TvSeriesDetailRecommendations extends StatelessWidget {
+  const TvSeriesDetailRecommendations({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<TvSeriesDetailRecommendationsCubit,
+        TvSeriesDetailRecommendationsState>(
+      builder: (context, state) {
+        if (state is TvSeriesDetailRecommendationsLoading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is TvSeriesDetailRecommendationsHasData) {
+          final recommendations = state.recommendations;
+          return SizedBox(
+            height: 160,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                final tvSeries = recommendations[index];
+                return  Card(
+                  color: kRichBlack,
+                  child: Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pushReplacementNamed(
+                          context,
+                          tvSeriesDetailRoute,
+                          arguments: tvSeries.id,
+                        );
+                      },
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(8),
+                        ),
+                        child: CachedNetworkImage(
+                          imageUrl:
+                          'https://image.tmdb.org/t/p/w500${tvSeries.posterPath}',
+                          placeholder: (context, url) => const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                          errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+              itemCount: recommendations.length,
+            ),
+          );
+        } else if (state is TvSeriesDetailRecommendationsError) {
+          return Text(state.message);
+        } else {
+          return const Text('Something Went Wrong');
+        }
+      },
     );
   }
 }
