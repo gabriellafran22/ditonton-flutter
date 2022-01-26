@@ -7,7 +7,7 @@ import 'package:mockito/mockito.dart';
 import 'package:movies/domain/usecases/get_movie_detail.dart';
 import 'package:movies/presentation/cubit/movie_detail/movie_detail_cubit.dart';
 
-import '../../../../test/dummy_data/dummy_objects.dart';
+import '../../../test/dummy_data/dummy_objects.dart';
 import 'movie_detail_cubit_test.mocks.dart';
 
 @GenerateMocks([GetMovieDetail])
