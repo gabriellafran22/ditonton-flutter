@@ -22,6 +22,8 @@ class TVSeriesRepositoryImpl implements TVSeriesRepository {
       return const Left(ServerFailure(''));
     } on SocketException {
       return const Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException {
+      return const Left(SSLFailure('CERTIFICATE_VERIFY_FAILED'));
     }
   }
 
@@ -34,6 +36,8 @@ class TVSeriesRepositoryImpl implements TVSeriesRepository {
       return const Left(ServerFailure(''));
     } on SocketException {
       return const Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException {
+      return const Left(SSLFailure('CERTIFICATE_VERIFY_FAILED'));
     }
   }
 
@@ -46,6 +50,8 @@ class TVSeriesRepositoryImpl implements TVSeriesRepository {
       return const Left(ServerFailure(''));
     } on SocketException {
       return const Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException {
+      return const Left(SSLFailure('CERTIFICATE_VERIFY_FAILED'));
     }
   }
 
@@ -58,11 +64,14 @@ class TVSeriesRepositoryImpl implements TVSeriesRepository {
       return const Left(ServerFailure(''));
     } on SocketException {
       return const Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException {
+      return const Left(SSLFailure('CERTIFICATE_VERIFY_FAILED'));
     }
   }
 
   @override
-  Future<Either<Failure, List<TVSeries>>> getTVSeriesRecommendations(int id) async {
+  Future<Either<Failure, List<TVSeries>>> getTVSeriesRecommendations(
+      int id) async {
     try {
       final result = await remoteDataSource.getTVSeriesRecommendations(id);
       return Right(result.map((model) => model.toEntity()).toList());
@@ -70,6 +79,8 @@ class TVSeriesRepositoryImpl implements TVSeriesRepository {
       return const Left(ServerFailure(''));
     } on SocketException {
       return const Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException {
+      return const Left(SSLFailure('CERTIFICATE_VERIFY_FAILED'));
     }
   }
 
@@ -82,6 +93,8 @@ class TVSeriesRepositoryImpl implements TVSeriesRepository {
       return const Left(ServerFailure(''));
     } on SocketException {
       return const Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException {
+      return const Left(SSLFailure('CERTIFICATE_VERIFY_FAILED'));
     }
   }
 
@@ -98,10 +111,11 @@ class TVSeriesRepositoryImpl implements TVSeriesRepository {
   }
 
   @override
-  Future<Either<Failure, String>> removeWatchlistTVSeries(TVSeriesDetail tvSeries) async {
+  Future<Either<Failure, String>> removeWatchlistTVSeries(
+      TVSeriesDetail tvSeries) async {
     try {
-      final result =
-          await localDataSource.removeWatchlistTVSeries(TVSeriesTable.fromEntity(tvSeries));
+      final result = await localDataSource
+          .removeWatchlistTVSeries(TVSeriesTable.fromEntity(tvSeries));
       return Right(result);
     } on DatabaseException catch (e) {
       return Left(DatabaseFailure(e.message));
@@ -109,10 +123,11 @@ class TVSeriesRepositoryImpl implements TVSeriesRepository {
   }
 
   @override
-  Future<Either<Failure, String>> saveWatchlistTVSeries(TVSeriesDetail tvSeries) async {
+  Future<Either<Failure, String>> saveWatchlistTVSeries(
+      TVSeriesDetail tvSeries) async {
     try {
-      final result =
-          await localDataSource.insertWatchlistTVSeries(TVSeriesTable.fromEntity(tvSeries));
+      final result = await localDataSource
+          .insertWatchlistTVSeries(TVSeriesTable.fromEntity(tvSeries));
       return Right(result);
     } on DatabaseException catch (e) {
       return Left(DatabaseFailure(e.message));
@@ -120,6 +135,4 @@ class TVSeriesRepositoryImpl implements TVSeriesRepository {
       rethrow;
     }
   }
-
-
 }

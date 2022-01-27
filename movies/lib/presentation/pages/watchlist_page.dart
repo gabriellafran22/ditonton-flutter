@@ -13,12 +13,15 @@ class WatchlistMoviesPage extends StatefulWidget {
 }
 
 class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
-    with RouteAware {
+    with RouteAware, SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
   @override
   void initState() {
     super.initState();
     context.read<GetWatchlistMoviesCubit>().getWatchlistMovies();
     context.read<GetWatchlistTvSeriesCubit>().getWatchlistTvSeries();
+    _tabController = TabController(length: 2, vsync: this);
   }
 
   @override
@@ -38,19 +41,26 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
     return Scaffold(
       appBar: AppBar(
         title: const Text('Watchlist'),
+        bottom: TabBar(
+          controller: _tabController,
+          tabs: const <Widget>[
+            Tab(
+              text: 'Movies',
+            ),
+            Tab(
+              text: 'TV Series',
+            ),
+          ],
+        ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: const [
-              MovieWatchlist(),
-              SizedBox(
-                height: 20,
-              ),
-              TVSeriesWatchlist(),
-            ],
-          ),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 8.0),
+        child: TabBarView(
+          controller: _tabController,
+          children: const <Widget>[
+            MovieWatchlist(),
+            TVSeriesWatchlist(),
+          ],
         ),
       ),
     );
@@ -76,25 +86,17 @@ class MovieWatchlist extends StatelessWidget {
           );
         } else if (state is GetWatchlistMoviesHasData) {
           if (state.result.isNotEmpty) {
-            return Column(
-              children: [
-                Text(
-                  'Movies',
-                  style: kHeading5,
-                ),
-                ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    final movie = state.result[index];
-                    return MovieCard(movie);
-                  },
-                  itemCount: state.result.length,
-                ),
-              ],
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                final movie = state.result[index];
+                return MovieCard(movie);
+              },
+              itemCount: state.result.length,
             );
           }
-          return Container();
+          return const Center(
+            child: Text('Movies Watchlist is Empty'),
+          );
         } else {
           return const Text('Something Went Wrong');
         }
@@ -116,25 +118,17 @@ class TVSeriesWatchlist extends StatelessWidget {
           );
         } else if (state is GetWatchlistTvSeriesHasData) {
           if (state.result.isNotEmpty) {
-            return Column(
-              children: [
-                Text(
-                  'TV Series',
-                  style: kHeading5,
-                ),
-                ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    final tvSeries = state.result[index];
-                    return TVSeriesCard(tvSeries);
-                  },
-                  itemCount: state.result.length,
-                ),
-              ],
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                final tvSeries = state.result[index];
+                return TVSeriesCard(tvSeries);
+              },
+              itemCount: state.result.length,
             );
           }
-          return Container();
+          return const Center(
+            child: Text('TV Series Watchlist is Empty'),
+          );
         } else {
           return const Text('Something Went Wrong');
         }

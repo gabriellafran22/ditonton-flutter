@@ -29,7 +29,7 @@ void main() {
             () async {
           // arrange
           when(mockHttpClient
-              .get(Uri.parse('$BASE_URL/tv/on_the_air?$API_KEY')))
+              .get(Uri.parse('$baseUrl/tv/on_the_air?$apiKey')))
               .thenAnswer((_) async =>
               http.Response(readJson('dummy_data/now_playing_tv_series.json'), 200));
           // act
@@ -43,7 +43,7 @@ void main() {
             () async {
           // arrange
           when(mockHttpClient
-              .get(Uri.parse('$BASE_URL/tv/on_the_air?$API_KEY')))
+              .get(Uri.parse('$baseUrl/tv/on_the_air?$apiKey')))
               .thenAnswer((_) async => http.Response('Not Found', 404));
           // act
           final call = dataSource.getNowPlayingTVSeries();
@@ -60,7 +60,7 @@ void main() {
     test('should return list of TVSeries when response is success (200)',
             () async {
           // arrange
-          when(mockHttpClient.get(Uri.parse('$BASE_URL/tv/popular?$API_KEY')))
+          when(mockHttpClient.get(Uri.parse('$baseUrl/tv/popular?$apiKey')))
               .thenAnswer((_) async =>
               http.Response(readJson('dummy_data/popular_tv_series.json'), 200));
           // act
@@ -73,7 +73,7 @@ void main() {
         'should throw a ServerException when the response code is 404 or other',
             () async {
           // arrange
-          when(mockHttpClient.get(Uri.parse('$BASE_URL/tv/popular?$API_KEY')))
+          when(mockHttpClient.get(Uri.parse('$baseUrl/tv/popular?$apiKey')))
               .thenAnswer((_) async => http.Response('Not Found', 404));
           // act
           final call = dataSource.getPopularTVSeries();
@@ -89,7 +89,7 @@ void main() {
 
     test('should return list of TV Series when response code is 200 ', () async {
       // arrange
-      when(mockHttpClient.get(Uri.parse('$BASE_URL/tv/top_rated?$API_KEY')))
+      when(mockHttpClient.get(Uri.parse('$baseUrl/tv/top_rated?$apiKey')))
           .thenAnswer((_) async =>
           http.Response(readJson('dummy_data/top_rated_tv_series.json'), 200));
       // act
@@ -101,7 +101,7 @@ void main() {
     test('should throw ServerException when response code is other than 200',
             () async {
           // arrange
-          when(mockHttpClient.get(Uri.parse('$BASE_URL/tv/top_rated?$API_KEY')))
+          when(mockHttpClient.get(Uri.parse('$baseUrl/tv/top_rated?$apiKey')))
               .thenAnswer((_) async => http.Response('Not Found', 404));
           // act
           final call = dataSource.getTopRatedTVSeries();
@@ -117,7 +117,7 @@ void main() {
 
     test('should return movie detail when the response code is 200', () async {
       // arrange
-      when(mockHttpClient.get(Uri.parse('$BASE_URL/tv/$tId?$API_KEY')))
+      when(mockHttpClient.get(Uri.parse('$baseUrl/tv/$tId?$apiKey')))
           .thenAnswer((_) async =>
           http.Response(readJson('dummy_data/tv_series_detail.json'), 200));
       // act
@@ -129,7 +129,7 @@ void main() {
     test('should throw Server Exception when the response code is 404 or other',
             () async {
           // arrange
-          when(mockHttpClient.get(Uri.parse('$BASE_URL/tv/$tId?$API_KEY')))
+          when(mockHttpClient.get(Uri.parse('$baseUrl/tv/$tId?$apiKey')))
               .thenAnswer((_) async => http.Response('Not Found', 404));
           // act
           final call = dataSource.getTVSeriesDetail(tId);
@@ -148,7 +148,7 @@ void main() {
             () async {
           // arrange
           when(mockHttpClient
-              .get(Uri.parse('$BASE_URL/tv/$tId/recommendations?$API_KEY')))
+              .get(Uri.parse('$baseUrl/tv/$tId/recommendations?$apiKey')))
               .thenAnswer((_) async => http.Response(
               readJson('dummy_data/tv_series_recommendations.json'), 200));
           // act
@@ -161,7 +161,7 @@ void main() {
             () async {
           // arrange
           when(mockHttpClient
-              .get(Uri.parse('$BASE_URL/tv/$tId/recommendations?$API_KEY')))
+              .get(Uri.parse('$baseUrl/tv/$tId/recommendations?$apiKey')))
               .thenAnswer((_) async => http.Response('Not Found', 404));
           // act
           final call = dataSource.getTVSeriesRecommendations(tId);
@@ -179,7 +179,7 @@ void main() {
     test('should return list of TV Series when response code is 200', () async {
       // arrange
       when(mockHttpClient
-          .get(Uri.parse('$BASE_URL/search/tv?$API_KEY&query=$tQuery')))
+          .get(Uri.parse('$baseUrl/search/tv?$apiKey&query=$tQuery')))
           .thenAnswer((_) async => http.Response(
           readJson('dummy_data/search_suits_tv_series.json'), 200));
       // act
@@ -192,7 +192,7 @@ void main() {
             () async {
           // arrange
           when(mockHttpClient
-              .get(Uri.parse('$BASE_URL/search/tv?$API_KEY&query=$tQuery')))
+              .get(Uri.parse('$baseUrl/search/tv?$apiKey&query=$tQuery')))
               .thenAnswer((_) async => http.Response('Not Found', 404));
           // act
           final call = dataSource.searchTVSeries(tQuery);
