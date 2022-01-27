@@ -1,8 +1,7 @@
 import 'dart:async';
 
-import 'package:movies/data/models/movie_table.dart';
 import 'package:core/utils/encrypt.dart';
-
+import 'package:movies/data/models/movie_table.dart';
 import 'package:sqflite_sqlcipher/sqflite.dart';
 import 'package:tv_series/data/models/tv_series_table.dart';
 

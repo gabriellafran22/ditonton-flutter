@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:dartz/dartz.dart';
 import 'package:core/core.dart';
+import 'package:dartz/dartz.dart';
 import 'package:tv_series/tv_series.dart';
 
 class TVSeriesRepositoryImpl implements TVSeriesRepository {

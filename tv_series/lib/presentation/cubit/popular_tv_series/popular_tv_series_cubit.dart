@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:tv_series/tv_series.dart';
 import 'package:equatable/equatable.dart';
+import 'package:tv_series/tv_series.dart';
 
 part 'popular_tv_series_state.dart';
 

@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 import 'package:tv_series/tv_series.dart';
+
 part 'tv_series_watchlist_state.dart';
 
 class TvSeriesWatchlistCubit extends Cubit<TvSeriesWatchlistState> {
